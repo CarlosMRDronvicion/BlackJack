@@ -16,6 +16,7 @@ let puntosComputadora = 0;
 
 const btnPedir = document.querySelector("#btnPedir");
 
+const divCartasJugador = document.querySelector("#jugador-cartas");
 const puntosHtml = document.querySelectorAll("small");
 
 
@@ -116,10 +117,21 @@ btnPedir.addEventListener("click", () => {     //lo que hacemos aqui es que cuan
     puntosJugador = puntosJugador + valorCarta( carta );
     puntosHtml[0].innerText = puntosJugador;    //aqui asignamos para que el contador de puntos jugador aumente despues de haber asignado la constante arriba de todo
 
-    
+//  <img class="carta" src="assets/cartas/2C.png"> 
 
-    console.log( puntosJugador );
+    const imgCarta = document.createElement("img");
+    imgCarta.src = `assets/cartas/${ carta }.png`;    //en estas dos lineas estamos definiendo las cartas aleatorias aqui pusimos la comilla esa y el dolar y corchetes para llamar a carta
+    imgCarta.classList.add ("carta");
 
+    divCartasJugador.append( imgCarta );
 
+    if (puntosJugador > 21){
+        console.warn("Lo siento mucho, perdiste");
+        btnPedir.disabled = true;   //esto es para bloquear el boton de pedir otra
+    }else if( puntosJugador === 21){
+        console.warn("21, genoal!");
+    }
+
+    // console.log( puntosJugador );
 
 });
