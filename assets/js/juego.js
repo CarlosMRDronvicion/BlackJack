@@ -9,6 +9,18 @@ let deck = [];
 const tipos = ["C", "D", "H", "S"];
 const especiales = ["A", "J", "K", "Q"];
 
+let puntosJugador = 0;
+let puntosComputadora = 0;
+
+//Referencias del HTML
+
+const btnPedir = document.querySelector("#btnPedir");
+
+const puntosHtml = document.querySelectorAll("small");
+
+
+
+
 //esta funcion crea una nueva baraja
 const crearDeck = () =>{
 
@@ -48,8 +60,8 @@ const pedirCarta = () => {
 
     const carta = deck.pop();
 
-    console.log(deck);
-    console.log(carta); //carta debe de ser de la baraja
+    // console.log(deck);
+    // console.log(carta); //carta debe de ser de la baraja
     return carta;
 }
 
@@ -92,4 +104,22 @@ return ( isNaN( valor )) ?
 
 
 const valor = valorCarta( pedirCarta() );
-console.log({valor});
+// console.log({valor});
+
+
+
+//Eventos
+
+btnPedir.addEventListener("click", () => {     //lo que hacemos aqui es que cuando se haga click en el boton pedir se realice esa funcion
+
+    const carta = pedirCarta();
+    puntosJugador = puntosJugador + valorCarta( carta );
+    puntosHtml[0].innerText = puntosJugador;    //aqui asignamos para que el contador de puntos jugador aumente despues de haber asignado la constante arriba de todo
+
+    
+
+    console.log( puntosJugador );
+
+
+
+});
