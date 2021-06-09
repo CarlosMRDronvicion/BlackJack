@@ -16,6 +16,7 @@ let puntosComputadora = 0;
 
 const btnPedir = document.querySelector("#btnPedir");
 const btnDetener = document.querySelector("#btnDetener");
+const btnNuevo = document.querySelector("#btnNuevo");
 
 const divCartasJugador = document.querySelector("#jugador-cartas");
 const divCartasComputadora = document.querySelector("#computadora-cartas");
@@ -129,6 +130,19 @@ const turnoComputadora = ( puntosMinimos ) => {
     }
     } while ( (puntosComputadora < puntosMinimos) && (puntosMinimos <= 21) );
 
+
+    setTimeout( () => {
+        if( puntosComputadora === puntosMinimos) {
+            alert("Nadie gana");
+        }else if( puntosMinimos > 21) {
+        alert("computadora gana");
+        }else if( puntosComputadora > 21) {
+            alert("Jugador gana!");
+        } else{
+            alert("Computadora Gana")
+        }               //este if lo que hicimos fue poner las alertas sin mas 
+    }, 10 ); // aqui lo que hacemos es para que automaticamente al finalizar la funcion anterior se ejecute esta
+
 }
 
 
@@ -170,7 +184,6 @@ btnPedir.addEventListener("click", () => {     //lo que hacemos aqui es que cuan
 });
 
 
-
 //boton detenr
 
 
@@ -180,5 +193,30 @@ btnDetener.addEventListener("click", () => {
         btnDetener.disabled = true;  
         
         turnoComputadora(puntosJugador);
+    
+});
+
+
+//boton nuevo
+
+btnNuevo.addEventListener("click", () => {
+
+    console.clear();
+
+    deck = [];
+    deck = crearDeck();
+
+    puntosJugador = 0;
+    puntosComputadora = 0;
+
+    puntosHtml[0].innerText = 0;
+    puntosHtml[1].innerText = 0;
+
+    divCartasComputadora.innerHTML = "";
+    divCartasJugador.innerHTML = "";
+
+    btnPedir.disabled = false;   
+    btnDetener.disabled = false;
+
     
 });
